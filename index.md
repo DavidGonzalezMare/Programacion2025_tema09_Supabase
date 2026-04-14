@@ -1,11 +1,11 @@
-﻿![Union europea](./images/union_europea.jpeg)  ![Generalitat](./images/generalitatn.png) ![Mare Nostrum](./images/mare_nostrum.png)
+﻿![Generalitat](./images/generalitat.png) ![Calidad](./images/calidad.png) &nbsp;&nbsp;![Union europea](./images/unioneuropea.png) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ![Mare Nostrum](./images/iesmarenostrum.png)
 
 <br>
 <br>
 
 # Tema 9. Acceso a datos. Persistencia en la nube.
 
-[*1.	Introducción a Supabase con Flutter*](#_apartado1)
+[*1.	Introducción a Supabase con C#*](#_apartado1)
 
 [*2.	Preparación de nuestro proyecto. Creación de la tabla y del proyecto de Consola.*](#_apartado2)
 
@@ -26,11 +26,11 @@ La persistencia en la nube se refiere al almacenamiento y gestión de datos en s
 En este tema vamos a trabajar con `Supabase`, que es una plataforma de código abierto que proporciona una solución completa para la persistencia en la nube, incluyendo bases de datos, autenticación y capacidades en tiempo real. 
 
 
-# <a name="_apartado1"></a>1. Introducción a Supabase con Flutter
+# <a name="_apartado1"></a>1. Introducción a Supabase con C#
 
-[Supabase](https://supabase.com/) es una plataforma de código abierto que proporciona una solución completa para el desarrollo de aplicaciones backend. Ofrece una serie de servicios integrados que incluyen bases de datos, autenticación, almacenamiento y capacidades en tiempo real, todo gestionado a través de una interfaz intuitiva y fácil de usar.
+[Supabase](https://supabase.com/) es una plataforma de código abierto que proporciona una solución completa para el desarrollo de **aplicaciones backend**. Ofrece una serie de servicios integrados que incluyen bases de datos, autenticación, almacenamiento y capacidades en tiempo real, todo gestionado a través de una interfaz intuitiva y fácil de usar.
 
-Supabase se basa en PostgreSQL, una de las bases de datos relacionales más robustas y populares, lo que garantiza un rendimiento y una fiabilidad excepcionales. Además, su enfoque en la simplicidad y la accesibilidad lo hace ideal tanto para desarrolladores principiantes como para aquellos con más experiencia.
+Supabase se basa en **PostgreSQL**, una de las bases de datos relacionales más robustas y populares, lo que garantiza un rendimiento y una fiabilidad excepcionales. Además, su enfoque en la simplicidad y la accesibilidad lo hace ideal tanto para desarrolladores principiantes como para aquellos con más experiencia.
 
 Entre las características destacadas de Supabase se encuentran:
 
@@ -42,7 +42,7 @@ Entre las características destacadas de Supabase se encuentran:
 
 - **Fácil Integración:** Compatible con múltiples frameworks y lenguajes de programación, incluyendo Flutter, React, y más.
 
-De manera resumida estos podrían ser los pasos para utilizar **Supabase** desde una aplicación **Flutter**:
+De manera resumida estos podrían ser los pasos para utilizar **Supabase** desde una aplicación **C#**:
 
 - Registro en Supabase.
 
@@ -142,8 +142,8 @@ Y buscamos e instalamos el paquete **Supabase** y el paquete **Supabase.Postgres
 
 ![Paquete Supabase](./images/imagen12.png)
 
-
-
+<br>
+<br>
 
 # <a name="_apartado3"></a>3. MVC
 
@@ -168,22 +168,24 @@ Ejemplo: un alumno o un curso.
 🟧 2. Vista (View)
 La Vista es todo lo que el usuario ve e interactúa con ello.
 
-En Flutter serían pantallas.
-En web serían páginas HTML.
+En Android serían pantallas.  
+En web serían páginas HTML.  
 En consola: simplemente los textos que salen por pantalla.
 
-La vista solo muestra información y recoge acciones del usuario.
+La vista solo **muestra información** y **recoge acciones del usuario**.
 
 🟩 3. Controlador (Controller)
+
 El Controlador es el que toma decisiones.
 
 Recibe **lo que hace el usuario** (por ejemplo: “ver alumnos”).
 **Pide los datos** necesarios al repositorio o al modelo.
 **Actualiza la vista** con esos datos.
 
-Es el encargado de coordinar todo: Vista → Lógica → Datos.
+Es el encargado de coordinar todo: **Vista → Lógica → Datos**.
 
 📁 ¿Y el Repositorio?
+
 Aunque no es parte del MVC clásico, lo usamos porque facilita mucho el trabajo.
 El Repositorio es la capa que se encarga de hablar con la base de datos (Supabase en nuestro caso).
 
@@ -203,7 +205,7 @@ Permite trabajar con datos sin mezclar consultas dentro del controlador.
 Vamos a empezar creando el modelo de datos para nuestro programa.
 Agregamos en nuestro Explorador de Soluciones una nueva carpeta llamada `Model`.
 
-El modelo de datos va a ser una clase que nos represente un registro de nuestra tabla students. 
+El modelo de datos va a ser una clase que nos represente un registro de nuestra tabla `students`. 
 Creamos en nuestro proyecto (dentro de esa carpeta) esta nueva clase:
 
 ```csharp
@@ -236,10 +238,11 @@ namespace Ejemplo01Students.Models
 }
 ```
 
-En la clase, de momento, encontramos las propiedades que se corresponden con los campos de la tabla y los constructores. También heredamos de BaseModel, y ponemos una serie de anotaciones, para evitar tener que hacer un mapeo de lo que nos devuelve la llamada a la tabla.
+En la clase, de momento, encontramos las propiedades que se corresponden con los campos de la tabla y los constructores. También heredamos de `BaseModel`, y ponemos una serie de anotaciones, para evitar tener que hacer un *mapeo* de lo que nos devuelve la llamada a la tabla.
+
+<br>
 
 ## Cliente de Supabase
-
 
 Vamos a crear ahora una clase para hacer la conexión con Supabase.
 Creamos la carpeta `Data` y en ella la siguiente clase `SupabaseClientFactory`:
@@ -277,20 +280,27 @@ namespace Ejemplo01Students.Data
     }
 }
 ```
+
+<br>
+
 Esta clase estática nos define una función que permite conectar con el cliente de Supabase. Lo hace de manera asíncrona. Dejamos la explicación informal de la asincronía para la clase presencial.
 
-Donde tenemos las constantes `SUPABASE_URL` y `SUPABASE_ANON_KEY` tendremos que poner nuestra url de proyecto de Supabase y nuestra clave anónima.
+Donde tenemos las constantes `SUPABASE_URL` y `SUPABASE_ANON_KEY` tendremos que poner nuestra url de proyecto de Supabase y nuestra clave anónima.  
 Lo encontramos dentro de Supabase.
 
-La url en Project Settings->Data API:
+La url en **Project Settings->Data API**:
 
 ![Url Supabase](./images/imagen13.png)
 
-Y la clave anon en Project Settings->API Keys:
+<br>
+
+Y la clave anónima en **Project Settings->API Keys**:
 
 ![Anon Supabase](./images/imagen14.png)
 
-Si queremos probar la conexión con Supabase en nuestro Main podemos hacer:
+<br>
+
+Si queremos probar la conexión con Supabase en nuestro `Main` podemos hacer:
 
 ```csharp
     internal class Program
@@ -303,7 +313,10 @@ Si queremos probar la conexión con Supabase en nuestro Main podemos hacer:
     }
 ```
 
-Tener en cuenta que el Main se convierte ahora en una función asíncrona. **Lo explicaremos en clase**.
+Tened en cuenta que el `Main` se convierte ahora en una función asíncrona. **Lo explicaremos en clase**.
+
+<br>
+<br>
 
 # <a name="_apartado5"></a>5. Programa Students. Repositorio
 
@@ -332,12 +345,13 @@ namespace Ejemplo01Students.Repositories
         {
             var response = await _client.From<Student>().Get();
 
-            // La convierte a una lista del modelo.
+            // La convierte a una lista del modelo. Devuelve lista vacía si hay problema.
             return response.Models ?? new List<Student>();
         }
     }
 }
 ```
+<br>
 
 Y lo podemos probar así en nuestro programa principal:
 
@@ -357,6 +371,8 @@ Y lo podemos probar así en nuestro programa principal:
         }
     }
 ```
+
+<br>
 
 ### Insertar nuevo estudiante
 
@@ -390,9 +406,15 @@ Y lo podemos probar en nuestro `Main`:
     }
 ```
 
+Hemos de tener en cuenta que ponemos null en el id del nuevo estudiante ya que es el propio Postgrest el que lo pone automáticamente.
+
+Además, la función `InsertAsync` devuelve un objeto de tipo `Student` con los datos insertados.
+
+<br>
+
 ### Resto de operaciones CRUD
 
-Vamos a implementar las operaciones CRUD que nos quedan: Borrar y Update en nuestro `StudentsRepository`:
+Vamos a implementar las operaciones CRUD que nos quedan: Delete y Update en nuestro `StudentsRepository`:
 
 ```csharp
         // Actualizar estudiante
@@ -404,8 +426,6 @@ Vamos a implementar las operaciones CRUD que nos quedan: Borrar y Update en nues
 
             return response.Models?.FirstOrDefault() ?? null;
         }
-
-        // Borrar por ID
 
         // Borrar por ID mediante modelo con PK (evita Filter)
         public async Task<bool> DeleteAsync(int id)
